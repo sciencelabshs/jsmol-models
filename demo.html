@@ -1,0 +1,481 @@
+<html>
+
+<head>
+    <title>JSmol molecule viewer</title>
+    <meta name="Author" content="Peter Hadley">
+    <style>
+        p.title {
+            font-size: 12pt;
+            margin-left: 0.7cm;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: arial;
+        }
+
+        h3 {
+            margin-left: 1cm;
+        }
+
+        sub {
+            font-size: 10pt;
+        }
+
+        sup {
+            font-size: 10pt;
+        }
+
+        p.center {
+            text-align: center
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        a.wiki {
+            text-decoration: none;
+            color: #0000FF;
+        }
+
+        span.wiki {
+            color: gray
+        }
+
+        div.a {
+            background-color: #ffffff;
+            padding-right: 1cm;
+            padding-left: 1cm;
+        }
+
+        div.t {
+            background-color: #eeeeee;
+            padding-top: 0.3cm;
+            padding-bottom: 0.3cm;
+            padding-right: 1cm;
+            padding-left: 1cm;
+        }
+
+        .styled-select select {
+            background: transparent;
+            padding: 5px;
+            -webkit-appearance: none;
+        }
+
+        .styled-select {
+            overflow: hidden;
+            background: #F0F0F0;
+        }
+
+        .menu {
+            display: block;
+            z-index: 999999;
+        }
+
+        .menu li {
+            display: inline-block;
+            position: relative;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .menu li a {
+            display: block;
+            padding: 12px 8px background: #fff;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .menu li.dropdown>a::after {
+            font-style: normal;
+            font-weight: 400;
+            margin-left: 8px;
+            font-size: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .menu li a::before {
+            font-style: normal;
+            font-weight: 400;
+            margin-right: 8px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .menu li.dropdown:hover>.submenu {
+            display: block;
+        }
+
+        .menu li a:hover {
+            background: #eee;
+        }
+
+        .menu .submenu {
+            display: none;
+        }
+
+        .submenu {
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            left: 0px;
+            list-style-type: none;
+            display: block;
+            width: 200px;
+            z-index: 9;
+        }
+
+        .submenu li {
+            display: block;
+        }
+
+        .submenu li a {
+            display: block;
+            background: #f6f6f6;
+            color: #000;
+            padding: 8px 6px;
+            margin-bottom: 0px;
+        }
+
+        .menu .submenu>li.dropdown:hover>.submenu {
+            display: block;
+        }
+
+        .menu .submenu .submenu {
+            position: absolute;
+            left: 200px;
+            top: 0px;
+        }
+
+        .submenu li.dropdown>a:after {
+            font-style: normal;
+            font-weight: 400;
+            margin-left: 8px;
+            font-size: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        li.m {
+            padding-left: 20px;
+            padding-right: 20px font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body style="background-color:white">
+
+
+    <table style="border-collapse:collapse" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <p style="text-align:left"><a href="http://www.tugraz.at">
+                        <img src="http://lampz.tugraz.at/~hadley/ss1/logo_tuklein.png" border="0"></a><img valign="top"
+                        src="http://lampz.tugraz.at/~hadley/ss1/Nawi.png" border="0"><a
+                        href="http://www.uni-graz.at/en/"><img
+                            src="http://lampz.tugraz.at/~hadley/ss1/logo_uniklein.png" border="0"></a></p>
+            </td>
+            <td></td>
+            <td>
+                <div style="float:right;">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#D0D0D0" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#FFFFFF" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#FCFCFC" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#F8F8F8" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#F4F4F4" height="1px"></td>
+        </tr>
+        <tr>
+            <td style="background-color:#F0F0F0">
+                <table>
+                    <tr>
+                        <td style="background-color:#F0F0F0">
+                            <ul class="menu" style="text-align:center">
+                                <li class="dropdown" style="padding-left:20px; padding-right:20px;">Menu &#9660;
+                                    <ul class="submenu">
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/skriptum/outline.php">Outline</a>
+                                        </li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/problems/problems.php">Exercise
+                                                Questions</a></li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/appendix/appendices.php">Appendices</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/lectures22/lectures.php">Lectures</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/introduction/studentprojects.php">Student
+                                                Projects</a></li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/books/books.php">Books</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" style="padding-left:20px; padding-right:20px;">Sections &#9660;
+                                    <ul class="submenu">
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/introduction/introduction.php">Introduction</a>
+                                        </li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/molecules/atoms.php">Atoms</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/molecules/molecules.php">Molecules</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/crystalstructure/crystalstructure.php">Crystal
+                                                Structure</a></li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/crystaldiffraction/crystaldiffraction.php">Diffraction</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/crystalbinding/crystalbinding.php">Crystal
+                                                Binding</a></li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/emfield/emfield.php">Photons</a>
+                                        </li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/phonons/phonons.php">Phonons</a>
+                                        </li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/fermigas/fermigas.php">Electrons</a>
+                                        </li>
+                                        <li><a href="http://lampz.tugraz.at/~hadley/ss1/bands/bands.php">Energy
+                                                Bands</a></li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/crystalphysics/crystalphysics.php">Crystal
+                                                Physics</a></li>
+                                        <li><a
+                                                href="http://lampz.tugraz.at/~hadley/ss1/semiconductors/semiconductors.php">Semiconductors</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td><input type="button" value="Print version" onclick="location=location.href+'?print'">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="background-color:#F0F0F0">
+                <p style="text-align:center; color:black; font-family:verdana;">
+                    <b>PHY.K02UF&nbsp;Molecular&nbsp;and&nbsp;Solid&nbsp;State&nbsp;Physics</b>
+                </p>
+            </td>
+            <td style="background-color:#F0F0F0"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#E2E2E2" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#D0D0D0" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#B6B6B6" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#909090" height="1px"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color:#646464" height="1px"></td>
+        </tr>
+    </table>
+    <h2>JSmol molecule viewer</h2>
+    <div class="a">
+        <script type="text/javascript" src="./jsmol/JSmol.min.js"></script>
+        <script type="text/javascript">
+
+            //jsmol and mathjax conflict so I am embedding the jsmol with an iframe
+
+            $(document).ready(function () {
+
+                Info = {
+                    width: 500,
+                    height: 500,
+                    debug: false,
+                    j2sPath: "./jsmol/j2s",
+                    color: "black",
+                    disableJ2SLoadMonitor: true,
+                    disableInitialConsole: true,
+                    addSelectionOptions: true,
+                    serverURL: "./jsmol/php/jsmol.php",
+                    use: "HTML5",
+                    readyFunction: null,
+                    script: "load ./data/alkanes/methane.pdb;"
+                }
+
+                $("#mydiv").html(Jmol.getAppletHtml("jmolApplet0", Info))
+
+            });
+
+
+
+        </script>
+
+        <p><a href="http://wiki.jmol.org/index.php/JSmol">JSmol</a> is an open source molecule viewer. It can retrieve
+            structural data on molecules from databases and plot the molecules in three dimensions. It is possible to
+            read the bond lengths and bond angles from the images.
+            Use the search box to search using the name of a molecule or click on one of the buttons below. Right click
+            on the image to access the JSmol menu.</p>
+
+        <table align="center">
+            <tr>
+                <td>
+                    <div id="mydiv"></div>
+
+                </td>
+                <td valign="middle">
+                    <input type="button" value="Spacefill" style="width:120px"
+                        onClick="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;spacefill only')"><br />
+                    <input type="button" value="Wire-frame" style="width:120px"
+                        onClick="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;wireframe -0.1')"><br />
+                    <input type="button" value="Ball & Stick" style="width:120px"
+                        onClick="javascript:Jmol.script(jmolApplet0,'select *;cartoons off;spacefill 23%;wireframe 0.15')"><br />
+
+                    <input type="button" value="Label Atoms" style="width:120px"
+                        onClick="javascript:Jmol.script(jmolApplet0,'select *;label %e;')"><br />
+                    <input type="button" value="Atom Labels Off" style="width:120px"
+                        onClick="javascript:Jmol.script(jmolApplet0,'select *;labels off')"><br />
+
+                    <table>
+                        <tr>
+                            <td style="background-color:#e8e8e8 ; border: #b0b0b0 solid 1px; ">
+                                <p style="text-align:center">
+                                    &nbsp;&nbsp;Background&nbsp;&nbsp;<br />&nbsp;&nbsp;<input type="button"
+                                        style="background-color:black" value=" "
+                                        onClick="javascript:Jmol.script(jmolApplet0,'background [0,0,0]')"><input
+                                        type="button" style="background-color:#d0d0d0" value=" "
+                                        onClick="javascript:Jmol.script(jmolApplet0,'background [208,208,208]')"><input
+                                        type="button" style="background-color:white" value=" "
+                                        onClick="javascript:Jmol.script(jmolApplet0,'background [255,255,255]')"></p>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+        <p>To find the distance between atom A and atom B, double click on atom A then double click on atom B. To find
+            the angle formed by atoms A, B, and C; double click on atom A, single click on atom B, and double click on
+            atom C.</p>
+        <form>
+            <p>
+                <input type="button" value="Acetylene" onclick="Jmol.script(jmolApplet0,'load SMILES C#C;');">
+                <input type="button" value="Ammonia"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/inorganic/ammonia.sdf;');">
+                <input type="button" value="Aspirin"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/aspirin.sdf;');">
+                <input type="button" value="Benzene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/benzene.sdf;');">
+                <input type="button" value="C60"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/fullerene.pdb;');">
+                <input type="button" value="Caffeine"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/caffeine.sdf;');">
+                <input type="button" value="Dextrose" onclick="Jmol.script(jmolApplet0,'load $dextrose;');">
+                <input type="button" value="Ethanol"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/ethanol.pdb;');">
+                <input type="button" value="Methanol" onclick="Jmol.script(jmolApplet0,'load $methanol;');">
+                <input type="button" value="Sucrose"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/organic/sucrose.sdf;');">
+                <input type="button" value="Water"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/inorganic/water2.sdf;');">
+                <!-- <input type="button" value="bucain" onclick="Jmol.loadFile(jmolApplet0,'http://www.rcsb.org/pdb/files/2H8U.pdb');"> -->
+            </p>
+
+            <p>Alkanes:
+                <input type="button" value="Methane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/methane.pdb;')">
+                <input type="button" value="Ethane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/ethane.pdb;');">
+                <input type="button" value="Propane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/propane.pdb;');">
+                <input type="button" value="Butane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/butane.pdb;');">
+                <input type="button" value="Pentane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/pentane.pdb;');">
+                <input type="button" value="Hexane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/hexane.pdb;');">
+                <input type="button" value="Heptane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/heptane.pdb;');">
+                <input type="button" value="Octane"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkanes/octane.pdb;');">
+                <br />
+                Alkenes:
+                <input type="button" value="Ethene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/ethene.sdf;');">
+                <input type="button" value="Propene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/propene.sdf;');">
+                <input type="button" value="Butene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/butene.sdf;');">
+                <input type="button" value="Pentene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/pentene.sdf;');">
+                <input type="button" value="Hexene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/hexene.sdf;');">
+                <input type="button" value="Heptene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/heptene.sdf;');">
+                <input type="button" value="Octene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkenes/octene.sdf;');">
+                <br />
+                Alkadienes:
+                <input type="button" value="Propadiene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkadiens/propadiene.sdf;');">
+                <input type="button" value="Butadiene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkadiens/butadiene.sdf;');">
+                <input type="button" value="Pentadiene"
+                    onclick="Jmol.script(jmolApplet0,'load ./data/alkadiens/pentadiene.sdf;');">
+                <br />
+                Cycloalkanes:
+                <input type="button" value="Cyclopropane" onclick="Jmol.script(jmolApplet0,'load cyclopropane.sdf;');">
+                <input type="button" value="Cyclobutane" onclick="Jmol.script(jmolApplet0,'load cyclobutane.sdf;');">
+                <input type="button" value="Cyclopentane" onclick="Jmol.script(jmolApplet0,'load cyclopentane.sdf;');">
+                <input type="button" value="Cyclohexane" onclick="Jmol.script(jmolApplet0,'load cyclohexane.pdb;');">
+                <input type="button" value="Cycloheptane" onclick="Jmol.script(jmolApplet0,'load cycloheptane.sdf;');">
+                <input type="button" value="Cyclooctane" onclick="Jmol.script(jmolApplet0,'load cyclooctane.sdf;');">
+                <br />
+                DNA bases:
+                <input type="button" value="Cytosine" onclick="Jmol.script(jmolApplet0,'load cytosine.sdf;');">
+                <input type="button" value="Guanine" onclick="Jmol.script(jmolApplet0,'load guanine.sdf;');">
+                <input type="button" value="Adenine" onclick="Jmol.script(jmolApplet0,'load adenine.sdf;');">
+                <input type="button" value="Thymine" onclick="Jmol.script(jmolApplet0,'load thymine.sdf;');">
+                <br />
+                Amino acids:
+                <input type="button" value="Alanine" onclick="Jmol.script(jmolApplet0,'load $alanine;');">
+                <input type="button" value="Arginine" onclick="Jmol.script(jmolApplet0,'load $arginine;');">
+                <input type="button" value="Asparagine" onclick="Jmol.script(jmolApplet0,'load $asparagine;');">
+                <input type="button" value="Aspartic acid"
+                    onclick="Jmol.script(jmolApplet0,'load $O=C(O)CC(N)C(=O)O;');">
+                <input type="button" value="Cysteine" onclick="Jmol.script(jmolApplet0,'load $cysteine;');">
+                <input type="button" value="Glutamic acid"
+                    onclick="Jmol.script(jmolApplet0,'load $C(CC(=O)O)C(C(=O)O)N;');">
+                <input type="button" value="Glutamine" onclick="Jmol.script(jmolApplet0,'load $glutamine;');">
+                <input type="button" value="Glycine" onclick="Jmol.script(jmolApplet0,'load $glycine;');">
+                <input type="button" value="Histidine" onclick="Jmol.script(jmolApplet0,'load $histidine;');">
+                <input type="button" value="Isoleucine" onclick="Jmol.script(jmolApplet0,'load $isoleucine;');">
+                <input type="button" value="Leucine" onclick="Jmol.script(jmolApplet0,'load $leucine;');">
+                <input type="button" value="Lysine" onclick="Jmol.script(jmolApplet0,'load $lysine;');">
+                <input type="button" value="Methionine" onclick="Jmol.script(jmolApplet0,'load $methionine;');">
+                <input type="button" value="Phenylalanine" onclick="Jmol.script(jmolApplet0,'load $phenylalanine;');">
+                <input type="button" value="Proline" onclick="Jmol.script(jmolApplet0,'load $proline;');">
+                <input type="button" value="Pyrrolysine" onclick="Jmol.script(jmolApplet0,'load $pyrrolysine;');">
+                <input type="button" value="Selenocysteine" onclick="Jmol.script(jmolApplet0,'load $selenocysteine;');">
+                <input type="button" value="Serine" onclick="Jmol.script(jmolApplet0,'load $serine;');">
+                <input type="button" value="Threonine" onclick="Jmol.script(jmolApplet0,'load $threonine;');">
+                <input type="button" value="Tryptophan" onclick="Jmol.script(jmolApplet0,'load $tryptophan;');">
+                <input type="button" value="Tyrosine" onclick="Jmol.script(jmolApplet0,'load $tyrosine;');">
+                <input type="button" value="Valine" onclick="Jmol.script(jmolApplet0,'load $valine;');">
+            </p>
+
+
+        </form>
+
+
+    </div>
+</body>
+
+</html>
